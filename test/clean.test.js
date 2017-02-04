@@ -13,7 +13,7 @@ const fixtures = path.join(__dirname, 'fixtures');
 const tmp = path.join(fixtures, 'tmp');
 
 
-describe.only('test/clean.test.js', () => {
+describe('test/clean.test.js', () => {
 
   beforeEach(() => {
     mm(process.env, 'PATH', `${fixtures}/bin:${process.env.PATH}`);
