@@ -22,6 +22,22 @@ Config it in [hooks](#Hooks)
 
 ### clean
 
+Clean node_modules and ignored git files.
+
+default options
+
+```js
+{
+  "hooks": {
+    "clean": "clean"
+  },
+  "clean": {
+    "node_modules": true,
+    "git": true
+  }
+}
+```
+
 ### git_config_user
 
 ### atom-project
