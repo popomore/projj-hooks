@@ -1,10 +1,21 @@
 {
-  "base": "../../tmp",
+  "base": "../..",
   "hooks": {
     "clean": "clean",
-    "clean_disable_node_modules": "clean"
+    "clean_disable_node_modules": "clean",
+    "git_config_user": "git_config_user"
   },
   "clean_disable_node_modules": {
     "node_modules": false
+  },
+  "git_config_user": {
+    "github.com": {
+      "name": "github",
+      "email": "x@github.com"
+    },
+    "gitlab.com": {
+      "name": "gitlab",
+      "email": "x@gitlab.com"
+    }
   }
 }

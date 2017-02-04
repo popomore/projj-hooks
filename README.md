@@ -26,7 +26,7 @@ Clean node_modules and ignored git files.
 
 default options
 
-```js
+```json
 {
   "hooks": {
     "clean": "clean"
@@ -39,6 +39,25 @@ default options
 ```
 
 ### git_config_user
+
+Add `user.name` and `user.email` for git config
+
+options
+
+```json
+{
+  "hooks": {
+    "git_config_user": "git_config_user"
+  },
+  "git_config_user": {
+    "github.com": {
+      "name": "your name",
+      "email": "your email"
+    }
+  }
+}
+```
+
 
 ### atom-project
 
