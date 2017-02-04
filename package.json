@@ -1,4 +1,43 @@
 {
   "name": "projj-hooks",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "description": "Hooks for Projj",
+  "dependencies": {
+    "co": "^4.6.0",
+    "runscript": "^1.2.0"
+  },
+  "devDependencies": {
+    "autod": "^2.7.1",
+    "coffee": "^3.3.0",
+    "egg-bin": "^2.0.2",
+    "egg-ci": "^1.1.0",
+    "eslint": "^3.15.0",
+    "eslint-config-egg": "^3.2.0",
+    "mm": "^2.1.0",
+    "projj": "^1.0.0",
+    "rimraf": "^2.5.4"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "autod": "autod",
+    "lint": "eslint .",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "ci": "npm run lint && npm run cov"
+  },
+  "ci": {
+    "version": "6"
+  },
+  "bin": {
+    "clean": "bin/clean.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:popomore/projj-hooks.git"
+  },
+  "author": "popomore <sakura9515@gmail.com>",
+  "license": "MIT"
 }

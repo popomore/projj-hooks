@@ -1,0 +1,10 @@
+{
+  "base": "../../tmp",
+  "hooks": {
+    "clean": "clean",
+    "clean_disable_node_modules": "clean"
+  },
+  "clean_disable_node_modules": {
+    "node_modules": false
+  }
+}
