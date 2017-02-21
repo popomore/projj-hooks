@@ -16,7 +16,7 @@ const config = utils.getConfig({
 });
 
 if (!fs.existsSync(gitConfig)) {
-  console.error('%s don\'t exist', gitConfig);
+  console.log('%s don\'t exist', gitConfig);
   return;
 }
 

@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const coffee = require('coffee');
 const mm = require('mm');
-const rimraf = require('rimraf');
+const rimraf = require('mz-modules/rimraf');
 const runscript = require('runscript');
 const assert = require('assert');
 
@@ -19,7 +19,7 @@ describe('test/clean.test.js', () => {
     mm(process.env, 'PATH', `${fixtures}/bin:${process.env.PATH}`);
   });
   afterEach(mm.restore);
-  afterEach(done => rimraf(tmp, done));
+  afterEach(() => rimraf(tmp));
 
   describe('node_modules', () => {
     const cwd = path.join(fixtures, 'clean-node-modules');
@@ -28,7 +28,7 @@ describe('test/clean.test.js', () => {
       mm(process.env, 'HOME', home);
       return runscript('npm install', { cwd });
     });
-    afterEach(done => rimraf(path.join(cwd, 'node_modules'), done));
+    afterEach(() => rimraf(path.join(cwd, 'node_modules')));
 
     it('should clean node_modules', function* () {
       assert(fs.existsSync(path.join(cwd, 'node_modules')));

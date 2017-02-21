@@ -29,7 +29,7 @@ default options
 ```json
 {
   "hooks": {
-    "clean": "clean"
+    "clean": "projj_clean"
   },
   "clean": {
     "node_modules": true,
@@ -47,7 +47,7 @@ options
 ```json
 {
   "hooks": {
-    "git_config_user": "git_config_user"
+    "git_config_user": "projj_git_config_user"
   },
   "git_config_user": {
     "github.com": {
@@ -58,8 +58,24 @@ options
 }
 ```
 
+### atom_project
 
-### atom-project
+Hook for [atom project](https://github.com/danielbrodin/atom-project-manager)
+
+It will generate `projects.cson` from all projj repositories.
+
+options
+
+```json
+{
+  "hooks": {
+    "atom_project": "projj_atom_project"
+  },
+  "atom_project": {
+    "setting": "/path/to/projects.cson"
+  }
+}
+```
 
 ## License
 

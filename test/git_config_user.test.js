@@ -3,7 +3,7 @@
 const path = require('path');
 const coffee = require('coffee');
 const mm = require('mm');
-const rimraf = require('rimraf');
+const rimraf = require('mz-modules/rimraf');
 const runscript = require('runscript');
 const assert = require('assert');
 
@@ -19,8 +19,8 @@ describe('test/git_config_user.test.js', () => {
     mm(process.env, 'PATH', `${fixtures}/bin:${process.env.PATH}`);
   });
   afterEach(mm.restore);
-  afterEach(done => rimraf(tmp, done));
-  afterEach(done => rimraf(path.join(cwd, '.git'), done));
+  afterEach(() => rimraf(tmp));
+  afterEach(() => rimraf(path.join(cwd, '.git')));
 
   it('should return when no .git', function* () {
     cwd = path.join(fixtures, 'nogit');
@@ -29,7 +29,7 @@ describe('test/git_config_user.test.js', () => {
 
     yield coffee.fork(binfile, [ 'run', 'git_config_user' ], { cwd })
     // .debug()
-    .expect('stderr', new RegExp(`${cwd}/.git/config don't exist`))
+    .expect('stdout', new RegExp(`${cwd}/.git/config don't exist`))
     .expect('code', 0)
     .end();
   });
