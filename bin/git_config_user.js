@@ -2,31 +2,36 @@
 
 'use strict';
 
-const fs = require('fs');
 const path = require('path');
-const utils = require('../lib/utils');
+const fs = require('mz/fs');
+const runscript = require('runscript');
+const { getConfig, run } = require('../lib/utils');
 
 const cwd = process.cwd();
 const gitConfig = path.join(cwd, '.git/config');
-const config = utils.getConfig({
+const config = getConfig({
   'github.com': {
     name: '',
     email: '',
   },
 });
 
-if (!fs.existsSync(gitConfig)) {
-  console.log('%s don\'t exist', gitConfig);
-  return;
-}
+run(function* () {
+  const exists = yield fs.exists(gitConfig);
+  if (!exists) {
+    console.log('%s don\'t exist', gitConfig);
+    return;
+  }
 
-const domain = getDomain(cwd);
-if (config[domain]) {
-  const { name, email } = config[domain];
-  console.log('%s includes %s', cwd, domain);
-  console.log('set name: %s, email: %s', name, email);
-  fs.appendFileSync(gitConfig, `[user]\n  name = ${name}\n  email = ${email}\n`);
-}
+  const domain = getDomain(cwd);
+  if (config[domain]) {
+    const { name, email } = config[domain];
+    console.log('%s includes %s', cwd, domain);
+    console.log('set name: %s, email: %s', name, email);
+    yield runscript(`git config --replace-all user.name ${name}`, { cwd });
+    yield runscript(`git config --replace-all user.email ${email}`, { cwd });
+  }
+});
 
 function getDomain(cwd) {
   const m = cwd.match(/([^/]*)\/[^/]*\/[^/]*$/);

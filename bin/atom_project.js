@@ -3,23 +3,22 @@
 'use strict';
 
 const path = require('path');
-const co = require('co');
 const fs = require('mz/fs');
-const utils = require('../lib/utils');
+const { getConfig, run, stringifyCson, parseCson } = require('../lib/utils');
 
 const cwd = process.cwd();
 const title = path.basename(cwd);
-const config = utils.getConfig({
+const config = getConfig({
   setting: 'projects.cson',
 });
 
 const setting = config.setting;
 
-co(function* () {
+run(function* () {
   let projects = [];
   if (yield fs.exists(setting)) {
     const body = yield fs.readFile(setting, 'utf8');
-    projects = yield utils.parseCson(body);
+    projects = yield parseCson(body);
     console.log('Read %s', setting);
   }
 
@@ -33,11 +32,9 @@ co(function* () {
     paths: [ cwd ],
   });
 
-  const body = yield utils.stringifyCson(projects);
+  const body = yield stringifyCson(projects);
   yield fs.writeFile(setting, body);
   console.log('Write %s', setting);
-}).catch(err => {
-  console.log(err);
 });
 
 function checkPath(cwd, projects) {
