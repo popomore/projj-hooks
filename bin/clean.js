@@ -4,17 +4,16 @@
 
 const fs = require('fs');
 const path = require('path');
-const co = require('co');
 const runscript = require('runscript');
-const utils = require('../lib/utils');
+const { getConfig, run } = require('../lib/utils');
 
 const cwd = process.cwd();
-const config = utils.getConfig({
+const config = getConfig({
   node_modules: true,
   git: true,
 });
 
-co(function* () {
+run(function* () {
   if (config.node_modules === true && fs.existsSync(path.join(cwd, 'node_modules'))) {
     const cmd = 'rm -rf node_modules';
     console.log('Run %s', cmd);
@@ -26,4 +25,4 @@ co(function* () {
     console.log('Run %s', cmd);
     yield runscript(cmd);
   }
-}).catch(err => console.error(err.stack));
+});

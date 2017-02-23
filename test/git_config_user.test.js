@@ -6,6 +6,7 @@ const mm = require('mm');
 const rimraf = require('mz-modules/rimraf');
 const runscript = require('runscript');
 const assert = require('assert');
+const fs = require('mz/fs');
 
 const binfile = path.join(__dirname, '../node_modules/.bin/projj');
 const fixtures = path.join(__dirname, 'fixtures');
@@ -68,5 +69,25 @@ describe('test/git_config_user.test.js', () => {
 
     const { stdout } = yield runscript('git config --get-regexp user', { cwd, stdio: 'pipe' });
     assert(stdout.toString() === 'user.name gitlab\nuser.email x@gitlab.com\n');
+  });
+
+  it('should not add when user.name exist', function* () {
+    cwd = path.join(fixtures, 'gitlab.com/popomore/test');
+    const home = path.join(fixtures, 'hook');
+    mm(process.env, 'HOME', home);
+
+    yield runscript('git init', { cwd });
+    yield runscript('git config --add user.name gitlab', { cwd });
+
+    yield coffee.fork(binfile, [ 'run', 'git_config_user' ], { cwd })
+    // .debug()
+    .expect('stdout', new RegExp(`${cwd} includes gitlab.com`))
+    .expect('stdout', /set name: gitlab, email: x@gitlab.com/)
+    .expect('code', 0)
+    .end();
+
+    const body = yield fs.readFile(path.join(cwd, '.git/config'), 'utf8');
+    const m = body.match(/name = gitlab/g);
+    assert(m.length === 1);
   });
 });
