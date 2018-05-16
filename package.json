@@ -36,6 +36,7 @@
   "bin": {
     "clean": "bin/clean.js",
     "git_config_user": "bin/git_config_user.js",
+    "projj_dirty": "bin/dirty.js",
     "projj_clean": "bin/clean.js",
     "projj_git_config_user": "bin/git_config_user.js",
     "projj_atom_project": "bin/atom_project.js"

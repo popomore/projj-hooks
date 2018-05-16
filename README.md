@@ -77,6 +77,20 @@ options
 }
 ```
 
+### dirty
+
+Check git repository whether dirty or not.
+
+options
+
+```json
+{
+  "hooks": {
+    "dirty": "projj_dirty"
+  }
+}
+```
+
 ## License
 
 [MIT](LICENSE)
