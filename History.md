@@ -1,4 +1,10 @@
 
+1.2.0 / 2018-08-18
+==================
+
+**features**
+  * [[`a00f95b`](http://github.com/popomore/projj-hooks/commit/a00f95b1945f06b585b381cddaa5320b583b6b39)] - feat: support vscode project manager (#6) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.1.0 / 2018-05-16
 ==================
 
