@@ -91,6 +91,23 @@ options
 }
 ```
 
+### vscode_project_manager
+
+Hook for [vscode-project-manager](https://github.com/alefragnani/vscode-project-manager)
+
+It will generate `projects.json` from all projj repositories.
+
+```json
+{
+  "hooks": {
+    "vscode_project_manager": "projj_vscode_project_manager"
+  },
+  "atom_project": {
+    "setting": "/path/to/projects.json"
+  }
+}
+```
+
 ## License
 
 [MIT](LICENSE)

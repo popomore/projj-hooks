@@ -5,7 +5,8 @@
     "clean": "clean",
     "clean_disable_node_modules": "clean",
     "git_config_user": "git_config_user",
-    "atom_project": "atom_project"
+    "atom_project": "atom_project",
+    "vscode_project_manager": "vscode_project_manager"
   },
   "clean_disable_node_modules": {
     "node_modules": false
@@ -19,5 +20,8 @@
       "name": "gitlab",
       "email": "x@gitlab.com"
     }
+  },
+  "vscode_project_manager": {
+    "setting": "projects.json"
   }
 }
