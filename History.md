@@ -1,4 +1,10 @@
 
+1.3.0 / 2020-05-14
+==================
+
+**features**
+  * [[`9578ffd`](http://github.com/popomore/projj-hooks/commit/9578ffd1bdc823359064e54d6868e6286da23150)] - feat: support gpg signingkey (#7) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.2.0 / 2018-08-18
 ==================
 
