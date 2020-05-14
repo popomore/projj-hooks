@@ -13,6 +13,7 @@ const config = getConfig({
   'github.com': {
     name: '',
     email: '',
+    signingkey: '',
   },
 });
 
@@ -25,11 +26,14 @@ run(function* () {
 
   const domain = getDomain(cwd);
   if (config[domain]) {
-    const { name, email } = config[domain];
+    const { name, email, signingkey } = config[domain];
     console.log('%s includes %s', cwd, domain);
-    console.log('set name: %s, email: %s', name, email);
+    console.log('set name: %s, email: %s, signingkey: %s', name, email, signingkey || '');
     yield runscript(`git config --replace-all user.name ${name}`, { cwd });
     yield runscript(`git config --replace-all user.email ${email}`, { cwd });
+    if (signingkey) {
+      yield runscript(`git config --replace-all user.signingkey ${signingkey}`, { cwd });
+    }
   }
 });
 

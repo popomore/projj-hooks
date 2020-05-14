@@ -40,7 +40,7 @@ default options
 
 ### git_config_user
 
-Add `user.name` and `user.email` for git config
+Add `user.name`, `user.email` and `user.signingkey` for git config
 
 options
 
@@ -52,7 +52,8 @@ options
   "git_config_user": {
     "github.com": {
       "name": "your name",
-      "email": "your email"
+      "email": "your email",
+      "signingkey": "your signingkey"
     }
   }
 }
