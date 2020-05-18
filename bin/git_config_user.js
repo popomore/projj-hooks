@@ -32,6 +32,7 @@ run(function* () {
     yield runscript(`git config --replace-all user.name ${name}`, { cwd });
     yield runscript(`git config --replace-all user.email ${email}`, { cwd });
     if (signingkey) {
+      yield runscript(`git config commit.gpgsign true`, { cwd });
       yield runscript(`git config --replace-all user.signingkey ${signingkey}`, { cwd });
     }
   }
