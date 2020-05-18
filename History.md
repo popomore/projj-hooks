@@ -1,4 +1,10 @@
 
+1.4.0 / 2020-05-18
+==================
+
+**features**
+  * [[`e99a8a6`](http://github.com/popomore/projj-hooks/commit/e99a8a66dc1a6b2875da20590860e8c56f3a907a)] - feat: auto set commit.gpgsign (#8) (TZ | 天猪 <<atian25@qq.com>>)
+
 1.3.0 / 2020-05-14
 ==================
 
