@@ -19,6 +19,10 @@
     "gitlab.com": {
       "name": "gitlab",
       "email": "x@gitlab.com"
+    },
+    "gitlab_multi_level_dir.com": {
+      "name": "multi_level_dir",
+      "email": "x@multi_level_dir.com"
     }
   },
   "vscode_project_manager": {

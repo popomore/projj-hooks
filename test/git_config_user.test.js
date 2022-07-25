@@ -71,6 +71,24 @@ describe('test/git_config_user.test.js', () => {
     assert(stdout.toString() === 'user.name gitlab\nuser.email x@gitlab.com\n');
   });
 
+  it('should add config when multi level dir', function* () {
+    cwd = path.join(fixtures, 'gitlab_multi_level_dir.com/popomore/test/test1/test2');
+    const home = path.join(fixtures, 'hook');
+    mm(process.env, 'HOME', home);
+
+    yield runscript('git init', { cwd });
+
+    yield coffee.fork(binfile, [ 'run', 'git_config_user' ], { cwd })
+    .debug()
+    .expect('stdout', new RegExp(`${cwd} includes gitlab_multi_level_dir.com`))
+    .expect('stdout', /set name: multi_level_dir, email: x@multi_level_dir.com/)
+    .expect('code', 0)
+    .end();
+
+    const { stdout } = yield runscript('git config --get-regexp user', { cwd, stdio: 'pipe' });
+    assert(stdout.toString() === 'user.name multi_level_dir\nuser.email x@multi_level_dir.com\n');
+  });
+
   it('should not add when user.name exist', function* () {
     cwd = path.join(fixtures, 'gitlab.com/popomore/test');
     const home = path.join(fixtures, 'hook');
