@@ -1,0 +1,12 @@
+{
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "projj-hooks-git-config-user",
+        "program": "${workspaceFolder}/bin/git_config_user.js",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder}/test/fixtures/github.com/popomore/test"
+      }
+    ]
+  }

@@ -4,6 +4,7 @@
 
 const path = require('path');
 const fs = require('mz/fs');
+const os = require('os');
 const runscript = require('runscript');
 const { getConfig, run } = require('../lib/utils');
 
@@ -46,9 +47,22 @@ function* getDomain(cwd) {
   if (configExists) {
     const originalConfig = JSON.parse(yield fs.readFile(configPath, 'utf8'));
     const mergedConfig = resolveConfig(originalConfig);
-    const base = Array.isArray(mergedConfig.base) ? mergedConfig.base : [ mergedConfig.base ];
-    const domainList = base.map(base => {
-      const [ domain ] = cwd.replace(`${base}/`, '').split('/');
+    const configBase = Array.isArray(mergedConfig.base) ? mergedConfig.base : [mergedConfig.base];
+    const domainList = configBase.map(basePath => {
+      let domain = '';
+      if (os.platform() === 'win32') {
+        domain = cwd
+          .replace(`${basePath}\\`, '')
+          .split('\\')
+          .reverse()
+          .pop();
+      } else {
+        domain = cwd
+          .replace(`${basePath}/`, '')
+          .split('/')
+          .reverse()
+          .pop();
+      }
       return domain;
     });
     const domain = domainList.find(base => config[base]);
@@ -67,7 +81,7 @@ function resolveConfig(config) {
   };
   config = Object.assign({}, defaults, config);
   if (!Array.isArray(config.base)) {
-    config.base = [ config.base ];
+    config.base = [config.base];
   }
   config.base = config.base.map(baseDir => {
     switch (baseDir[0]) {
@@ -78,7 +92,7 @@ function resolveConfig(config) {
       case '/':
         return baseDir;
       default:
-        return path.join(process.cwd(), baseDir);
+        return os.platform() === 'win32' ? baseDir : path.join(process.cwd(), baseDir);
     }
   });
   return config;
