@@ -1,4 +1,4 @@
-# Projj-hooks
+# Projjj-hooks
 
 Hooks for [Projj](https://github.com/popomore/projj)
 

@@ -1,7 +1,7 @@
 {
-  "name": "projj-hooks",
-  "version": "1.4.0",
-  "description": "Hooks for Projj",
+  "name": "projjj-hooks",
+  "version": "1.0.0",
+  "description": "Hooks for Projjj",
   "dependencies": {
     "co": "^4.6.0",
     "cson": "^4.0.0",
@@ -17,7 +17,7 @@
     "eslint-config-egg": "^3.2.0",
     "mm": "^2.1.0",
     "mz-modules": "^1.0.0",
-    "projj": "^2.0.0"
+    "projjj": "^1.0.0"
   },
   "engines": {
     "node": ">=6.0.0"
